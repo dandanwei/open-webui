@@ -34,9 +34,11 @@
 				!$user?.permissions?.workspace?.prompts
 			) {
 				goto('/');
-			} else if ($page.url.pathname.includes('/tools') && !$user?.permissions?.workspace?.tools) {
-				goto('/');
-			}
+		} else if ($page.url.pathname.includes('/tools') && !$user?.permissions?.workspace?.tools) {
+			goto('/');
+		} else if ($page.url.pathname.includes('/litellm-keys') && !$user?.permissions?.workspace?.litellm_keys) {
+			goto('/');
+		}
 		}
 
 		loaded = true;
@@ -119,6 +121,17 @@
 								href="/workspace/tools"
 							>
 								{$i18n.t('Tools')}
+							</a>
+						{/if}
+
+						{#if $user?.role === 'admin' || $user?.permissions?.workspace?.litellm_keys}
+							<a
+								class="min-w-fit p-1.5 {$page.url.pathname.includes('/workspace/litellm-keys')
+									? ''
+									: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
+								href="/workspace/litellm-keys"
+							>
+								LiteLLM Keys
 							</a>
 						{/if}
 					</div>

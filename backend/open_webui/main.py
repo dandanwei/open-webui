@@ -87,6 +87,7 @@ from open_webui.routers import (
     users,
     utils,
     scim,
+    litellm_keys,
 )
 
 from open_webui.routers.retrieval import (
@@ -1260,6 +1261,9 @@ app.include_router(
     evaluations.router, prefix="/api/v1/evaluations", tags=["evaluations"]
 )
 app.include_router(utils.router, prefix="/api/v1/utils", tags=["utils"])
+
+# LiteLLM Keys API
+app.include_router(litellm_keys.router, prefix="/api/v1/litellm-keys", tags=["litellm-keys"])
 
 # SCIM 2.0 API for identity management
 if SCIM_ENABLED:
