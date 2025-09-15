@@ -13,6 +13,7 @@ from open_webui.utils.misc import throttle
 from pydantic import BaseModel, ConfigDict
 from sqlalchemy import BigInteger, Column, String, Text, Date
 from sqlalchemy import or_
+from sqlalchemy.orm import relationship
 
 import datetime
 
@@ -47,6 +48,9 @@ class User(Base):
 
     updated_at = Column(BigInteger)
     created_at = Column(BigInteger)
+
+    # Relationships
+    litellm_keys = relationship("LiteLLMKey", back_populates="user")
 
 
 class UserSettings(BaseModel):
