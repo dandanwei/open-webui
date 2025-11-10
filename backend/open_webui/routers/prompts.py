@@ -19,7 +19,7 @@ router = APIRouter()
 ############################
 
 
-@router.get("/", response_model=list[PromptModel])
+@router.get("/", response_model=list[PromptUserResponse])
 async def get_prompts(user=Depends(get_verified_user)):
     if user.role == "admin" and BYPASS_ADMIN_ACCESS_CONTROL:
         prompts = Prompts.get_prompts()
